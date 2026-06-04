@@ -1,0 +1,55 @@
+# SignalPulse-CLI Configuration
+# Copy this file to ~/.signalpulse/config.yaml and customize
+
+# Data sources configuration
+sources:
+  hackernews:
+    enabled: true
+    weight: 1.0
+    limit: 30
+  reddit:
+    enabled: true
+    weight: 1.0
+    limit: 25
+    subreddits:
+      - technology
+      - programming
+      - machinelearning
+  github:
+    enabled: true
+    weight: 0.8
+    limit: 25
+  producthunt:
+    enabled: true
+    weight: 0.7
+    limit: 20
+
+# Scoring configuration
+scoring:
+  weights:
+    score: 0.5       # Raw engagement score weight
+    comments: 0.3    # Comment count weight
+    recency: 0.2     # Time decay weight
+  recency_half_life_hours: 12.0  # Half-life for recency decay
+
+# AI synthesis configuration
+ai:
+  provider: openai    # openai, anthropic, or ollama
+  api_key: ""         # Set via env var SIGNALPULSE_AI_API_KEY
+  api_base: "https://api.openai.com/v1"
+  model: gpt-3.5-turbo
+  max_tokens: 2048
+  temperature: 0.7
+  top_n: 15           # Number of items to send to AI
+
+# Cache configuration
+cache:
+  enabled: true
+  ttl_minutes: 60     # Cache items for 1 hour
+  db_path: ~/.signalpulse/cache.db
+
+# Output configuration
+output:
+  format: terminal    # terminal, markdown, or html
+  theme: dark
+  max_items: 50
